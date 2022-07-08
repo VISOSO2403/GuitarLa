@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { formatearFecha } from "../helpers";
 import styles from "../styles/EntradaCurso.module.css";
 
@@ -8,7 +8,7 @@ const EntradaCurso = ({ curso }) => {
     curso;
   
   return (
-    <article>
+    <div>
       <Image
         priority="true"
         layout="responsive"
@@ -29,7 +29,7 @@ const EntradaCurso = ({ curso }) => {
           <a className={styles.enlace}>Ver contenido</a>
         </Link>
       </div>
-    </article>
+    </div>
   );
 };
 

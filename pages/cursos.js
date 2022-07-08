@@ -1,37 +1,28 @@
-import Layout from "../components/Layout"
-import EntradaCurso from "../components/EntradaCurso"
-import styles from "../styles/Curso.module.css"
+import Layout from "../components/Layout";
+import ListadoCurso from "../components/ListadoCurso";
 
-const Curso = ({cursos}) => {
+const Curso = ({ cursos }) => {
   return (
     <Layout pagina="Cursos">
       <main className="contenedor">
-        <h2 className="heading">Cursos</h2>
+        <h1 className="heading">Cursos</h1>
 
-        <div className={styles.curso}>
-          {cursos.map(curso => (
-            <EntradaCurso 
-              key={curso.id}
-              curso={curso}
-            />
-            
-          ))}
-        </div>
+        <ListadoCurso cursos={cursos} />
       </main>
     </Layout>
-  )
-}
+  );
+};
 
-export async function getStaticProps() {
-  const url = "http://localhost:1337/cursos"
-  const respuesta = await fetch(url)
-  const cursos = await respuesta.json()
+export async function getServerSideProps() {
+  const url = `${process.env.API_URL}/cursos`;
+  const respuesta = await fetch(url);
+  const cursos = await respuesta.json();
 
   return {
     props: {
       cursos,
-    }
-  }
+    },
+  };
 }
 
-export default Curso
+export default Curso;
